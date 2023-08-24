@@ -28,7 +28,11 @@ const navigationEvents = () => {
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
     console.warn('CLICKED AUTHORS');
-    getAuthors().then((response) => showAuthors(response));
+    getAuthors().then(showAuthors);
+  });
+
+  document.querySelector('#fav-authors').addEventListener('click', () => {
+    getFavoriteAuthors().then(showAuthors);
   });
 
   // STRETCH: SEARCH
