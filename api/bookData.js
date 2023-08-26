@@ -102,5 +102,5 @@ export {
   deleteBook,
   getSingleBook,
   updateBook,
-  searchBooks
+  searchBooks,
 };
