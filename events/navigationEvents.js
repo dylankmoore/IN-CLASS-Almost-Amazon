@@ -1,8 +1,8 @@
 import { signOut } from '../utils/auth';
 import { booksOnSale, getBooks } from '../api/bookData';
-import { showBooks } from '../pages/books';
+import { emptyBooks, showBooks } from '../pages/books';
 import { getAuthors, getFavoriteAuthors } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
+import { emptyAuthors, showAuthors } from '../pages/authors';
 
 // navigation events
 const navigationEvents = () => {
@@ -19,7 +19,13 @@ const navigationEvents = () => {
   // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
     console.warn('CLICKED ALL BOOKS');
-    getBooks().then(showBooks);
+    getBooks().then((array) => {
+      if (array.length) {
+        showBooks(array);
+      } else {
+        emptyBooks();
+      }
+    });
   });
 
   // FIXME: STUDENTS Create an event listener for the Authors
@@ -28,7 +34,13 @@ const navigationEvents = () => {
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
     console.warn('CLICKED AUTHORS');
-    getAuthors().then(showAuthors);
+    getAuthors().then((array) => {
+      if (array.length) {
+        showAuthors(array);
+      } else {
+        emptyAuthors();
+      }
+    });
   });
 
   document.querySelector('#fav-authors').addEventListener('click', () => {
