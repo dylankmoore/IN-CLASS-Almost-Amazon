@@ -3,9 +3,9 @@ import client from '../utils/client';
 
 const endpoint = client.databaseURL;
 
-// TODO: GET BOOKS
-const getBooks = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json`, {
+// GET BOOKS
+const getBooks = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ const getBooks = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: DELETE BOOK
+// DELETE BOOK
 const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${firebaseKey}.json`, {
     method: 'DELETE',
@@ -33,7 +33,7 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: GET SINGLE BOOK
+// GET SINGLE BOOK
 const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${firebaseKey}.json`, {
     method: 'GET',
@@ -46,7 +46,7 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: CREATE BOOK
+// CREATE BOOK
 const createBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json`, {
     method: 'POST',
@@ -59,7 +59,7 @@ const createBook = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: UPDATE BOOK
+// UPDATE BOOK
 const updateBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -72,21 +72,24 @@ const updateBook = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: FILTER BOOKS ON SALE
-const booksOnSale = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
+// FILTER BOOKS ON SALE
+const booksOnSale = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },
   }).then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      const filteredBooks = Object.values(data).filter((book) => book.sale);
+      resolve(filteredBooks);
+    })
     .catch(reject);
 });
 
 // TODO: STRETCH...SEARCH BOOKS
-const searchBooks = (searchValue) => new Promise((resolve, reject) => {
-  getBooks().then((booksArray) => {
+const searchBooks = (searchValue, uid) => new Promise((resolve, reject) => {
+  getBooks(uid).then((booksArray) => {
     const searchResults = booksArray.filter((book) => (
       book.title.toLowerCase().includes(searchValue)
       || book.description.toLowerCase().includes(searchValue)
