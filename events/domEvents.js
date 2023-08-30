@@ -64,17 +64,11 @@ const domEvents = (user) => {
     // CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
       console.warn('ADD AUTHOR');
-      addAuthorForm();
+      addAuthorForm(user.uid);
     }
 
     // ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
-      console.warn('EDIT AUTHOR');
-      const [, firebaseKey] = e.target.id.split('--');
-      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(user.uid, authorObj));
-    }
-
-    if (e.target.id.includes('edit-author-btn')) {
       console.warn('EDIT AUTHOR');
       const [, firebaseKey] = e.target.id.split('--');
       getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(user.uid, authorObj));

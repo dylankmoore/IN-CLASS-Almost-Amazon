@@ -38,9 +38,7 @@ const showAuthors = (array) => {
 
 const showFavorites = (array) => {
   clearDom();
-
   const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-author-btn">Add An Author</button>';
-
   renderToDOM('#add-button', btnString);
 
   let domString = '';
