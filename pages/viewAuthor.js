@@ -14,15 +14,16 @@ const viewAuthor = (obj) => {
        <i id="delete-author-btn--${obj.firebaseKey}" class="btn btn-danger fas" style="margin-left:10px;">Delete</i>
      </div></div>
    </div>
-    </div>`;
-
-  obj.books.forEach((item) => {
-    domString += `
+    </div>
     <div class="mt-2 d-flex flex-wrap gap-2">
    <div class="text-white ms-5 details">
    <hr>
    <h4>Books</h4>
-    <div class="mt-2 d-flex flex-wrap">
+    `;
+
+  obj.books.forEach((item) => {
+    domString += `
+   <div class="mt-2 d-flex flex-wrap">
         <div class="card">
         <img class="card-img-top" src=${item.image} alt=${item.title} style="width: 300px;" background-color:"black;">
           <div class="card-body">
