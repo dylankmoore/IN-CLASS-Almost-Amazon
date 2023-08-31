@@ -15,19 +15,23 @@ const showAuthors = (array) => {
 
   let domString = '';
   if (array.length < 1) {
-    domString += '<p>No Authors Found</p>';
+    domString += '<h1>No Authors Found</h1>';
   } else {
     array.forEach((item) => {
       domString += `
     <div class="card" style="width: 18rem;">
       <div class="card-body">
       <p class="card-text">${item.favorite ? '<b><font color="dodgerblue">Favorite</b></font>' : ''}</p>
-        <h5 class="card-title">${item.first_name} ${item.last_name}</h5>
+        <h5 class="card-title">${item.first_name} ${item.last_name}
+        ${item.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}
+        </h5>
         <h6 class="card-subtitle mb-2 text-muted">${item.email}</h6>
         <hr>
-        <i class="btn btn-success fas fa-eye" id="view-author-btn--${item.firebaseKey}"></i>
-        <i class="fas fa-edit btn btn-info" id="update-author--${item.firebaseKey}"></i>
-        <i class="btn btn-danger fas fa-trash-alt" id="delete-author-btn--${item.firebaseKey}"></i>
+        <div id="buttons">
+        <i class="btn btn-success fas" id="view-author-btn--${item.firebaseKey}">View</i>
+        <i class="fas btn btn-info" id="update-author--${item.firebaseKey}">Update</i>
+        <i class="btn btn-danger fas" id="delete-author-btn--${item.firebaseKey}">Delete</i>
+        </div>
       </div>
     </div>
     `;
@@ -49,13 +53,13 @@ const showFavorites = (array) => {
       domString += `
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-      <p class="card-text bold">${item.favorite ? '<span class="badge rounded-pill text-bg-dark">Favorite</span>' : ''}</p>
+      <p class="card-text">${item.favorite ? '<b><font color="dodgerblue">Favorite</b></font>' : ''}</p>
         <h5 class="card-title">${item.first_name} ${item.last_name}</h5>
         <h6 class="card-subtitle mb-2 text-muted">${item.email}</h6>
         <hr>
-        <i class="btn btn-success fas fa-eye" id="view-author-btn--${item.firebaseKey}"></i>
-        <i class="fas fa-edit btn btn-info" id="update-author--${item.firebaseKey}"></i>
-        <i class="btn btn-danger fas fa-trash-alt" id="delete-author-btn--${item.firebaseKey}"></i>
+        <i class="btn btn-success fas" id="view-author-btn--${item.firebaseKey}">View</i>
+        <i class="fas btn btn-info" id="update-author--${item.firebaseKey}">Update</i>
+        <i class="btn btn-danger fas" id="delete-author-btn--${item.firebaseKey}">Delete</i>
       </div>
     </div>`;
     });

@@ -5,31 +5,36 @@ const viewAuthor = (obj) => {
   clearDom();
   let domString = '';
   domString += `
-  <div class="mt-5 d-flex flex-wrap">
-   <div class="d-flex flex-column">
-     <div class="mt-5">
-       <i id="update-author--${obj.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-       <i id="delete-author-btn--${obj.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
-     </div>
-   </div>
    <div class="text-white ms-5 details">
      <h5>${obj.first_name} ${obj.last_name} ${obj.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
-     Author Email: <a href="mailto:${obj.email}">${obj.email}</a>
+     Author Email: <a href="mailto:${obj.email}">${obj.email}</a><BR>
       </div>
+     <div class="auth-buttons">
+       <i id="update-author--${obj.firebaseKey}" class="fas btn btn-info">Update</i>
+       <i id="delete-author-btn--${obj.firebaseKey}" class="btn btn-danger fas" style="margin-left:10px;">Delete</i>
+     </div></div>
+   </div>
     </div>`;
 
   obj.books.forEach((item) => {
     domString += `
+    <div class="mt-2 d-flex flex-wrap gap-2">
+   <div class="text-white ms-5 details">
+   <hr>
+   <h4>Books</h4>
+    <div class="mt-2 d-flex flex-wrap">
         <div class="card">
+        <img class="card-img-top" src=${item.image} alt=${item.title} style="width: 300px;" background-color:"black;">
           <div class="card-body">
             <h5 class="card-title">${item.title}</h5>
               <p class="card-text bold">${item.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${item.price}` : `$${item.price}`}</p>
-              <hr>
-              <i class="btn btn-success fas fa-eye" id="view-book-btn--${item.firebaseKey}"></i>
-              <i id="edit-book-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-              <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
+              <hr><center>
+              <i class="btn btn-success fas" id="view-book-btn--${item.firebaseKey}">View</i>
+              <i id="edit-book-btn--${item.firebaseKey}" class="fas btn btn-info">Update</i>
+              <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger fas">Delete</i></center>
           </div>
-        </div>`;
+        </div>
+    </div>`;
   });
 
   renderToDOM('#view', domString);
