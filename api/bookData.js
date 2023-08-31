@@ -87,7 +87,7 @@ const booksOnSale = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: STRETCH...SEARCH BOOKS
+// SEARCH BOOKS
 const searchBooks = (searchValue, uid) => new Promise((resolve, reject) => {
   getBooks(uid).then((booksArray) => {
     const searchResults = booksArray.filter((book) => (

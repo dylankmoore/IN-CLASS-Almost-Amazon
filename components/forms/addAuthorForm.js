@@ -11,7 +11,7 @@ const addAuthorForm = (uid, obj = {}) => {
       </div>
       <div class="form-group">
         <label for="image">Last Name</label>
-        <input type="text" class="form-control" id="last_name" placeholder="Last Name" value="${obj.last_name || ''}"required>
+        <input type="text" class="form-control" id="last_name" placeholder="Last Name" value="${obj.last_name || ''}" required>
       </div>
       <div class="form-group">
         <label for="title">Email</label>

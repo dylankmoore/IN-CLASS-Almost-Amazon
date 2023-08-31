@@ -14,7 +14,7 @@ const showBooks = (array) => {
 
   let domString = '';
   if (array.length < 1) {
-    domString += '<p>No Books Found</p>';
+    domString += '<h1>No Books Found</h1>';
   } else {
     array.forEach((item) => {
       domString += `
@@ -24,9 +24,10 @@ const showBooks = (array) => {
           <h5 class="card-title">${item.title}</h5>
             <p class="card-text bold">${item.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${item.price}` : `$${item.price}`}</p>
             <hr>
-            <i class="btn btn-success fas fa-eye" id="view-book-btn--${item.firebaseKey}"></i>
-            <i id="edit-book-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-            <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
+            <i class="btn btn-success fas button-block" id="view-book-btn--${item.firebaseKey}">View</i>
+            <i id="edit-book-btn--${item.firebaseKey}" class="fas btn btn-info button-block">Update</i>
+            <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger fas button-block">Delete</i>
+            </div>
         </div>
       </div>`;
     });
