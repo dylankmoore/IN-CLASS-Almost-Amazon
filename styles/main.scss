@@ -96,6 +96,10 @@ body {
 #view {
   width: 90%;
   margin:auto;
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  flex-direction: column;
 
   .details {
     min-width: 50%;
@@ -115,4 +119,13 @@ body {
     padding-bottom: 0px;
     padding-top: 10px;
   }
-}
+
+  .card {
+    width: 300px;
+    margin: 5px;
+    display: flex;
+    text-align: center;
+    margin-right: auto;
+  }
+  
+  }
