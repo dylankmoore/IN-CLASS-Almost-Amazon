@@ -4,7 +4,7 @@ import renderToDOM from '../../utils/renderToDom';
 const addAuthorForm = (uid, obj = {}) => {
   clearDom();
   const domString = `
-    <form id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'}" class="mb-4">
+    <form id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'}" class="mb-4 flex-column">
       <div class="form-group">
         <label for="image">First Name</label>
         <input type="text" class="form-control" id="first_name" placeholder="First Name" value="${obj.first_name || ''}" required>
@@ -19,8 +19,8 @@ const addAuthorForm = (uid, obj = {}) => {
       </div>
       <div class="form-check">
       <input type="checkbox" class="form-check-input" id="favorite" ${obj.favorite ? 'checked' : ''}>
-      <label class="form-check-label" for="favorite">Favorite?</label>
-      <button type="submit" class="btn btn-primary mt-3">Submit Author</button>
+      <label class="form-check-label" for="favorite">Favorite?</label></div>
+      <button type="submit" class="btn btn-primary">Submit Author</button>
     </form>`;
 
   renderToDOM('#form-container', domString);
